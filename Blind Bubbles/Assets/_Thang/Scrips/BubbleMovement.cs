@@ -62,7 +62,6 @@ public class BubbleMovement : MonoBehaviour
             // Nếu không còn Material nào chưa sử dụng
             if (availableMaterials.Count == 0)
             {
-                Debug.LogError("All materials have been used in other projects!");
                 return;
             }
 
@@ -74,10 +73,6 @@ public class BubbleMovement : MonoBehaviour
             renderer.material = chosenMaterial;
             // Thêm Material đã sử dụng vào danh sách
             usedMaterials.Add(chosenMaterial);
-        }
-        else
-        {
-            Debug.LogError("MeshRenderer component not found!");
         }
     }
 }

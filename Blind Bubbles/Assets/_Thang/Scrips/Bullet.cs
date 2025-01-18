@@ -5,9 +5,9 @@ public class Bullet : MonoBehaviour
     // Khai báo event tĩnh để theo dõi va chạm của bullet
     public static System.Action<Vector3> OnBulletHit;
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider collision)
     {
-        if (collision.gameObject.CompareTag("ball"))
+        if (collision.CompareTag("ball"))
         {
             // Khi chạm vào Ball, kích hoạt event
             if (OnBulletHit != null)

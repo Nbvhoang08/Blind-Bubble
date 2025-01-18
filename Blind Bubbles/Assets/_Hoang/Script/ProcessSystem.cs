@@ -18,6 +18,7 @@ public class ProcessSystem : MonoBehaviour, IObserver
     public VideoPlayer videoPlayer;
     public Image ImgDisPlay;    
     public List<GameObject> DisPlayItem;
+
     public void OnNotify(string eventName, object eventData)
     {
         if(eventName =="BublePop")
@@ -33,49 +34,58 @@ public class ProcessSystem : MonoBehaviour, IObserver
         switch (data.type)
         {
             case ObjectMeme.MemeType.Image:
-                ShowMemeImage(data.memeImage);
+                ShowMemeImage(data.memeImage, data.ImgSound);
                 break;
 
             case ObjectMeme.MemeType.Video:
                 PlayMemeVideo(data.memeVideo);
                 break;
-
-            case ObjectMeme.MemeType.JumpScare:
-                TriggerJumpScare();
-                break;
-
-            case ObjectMeme.MemeType.GameEvent:
-                ActivateGameEvent();
-                break;
         }
     }
 
     private void PlayMemeVideo(VideoClip memeVideo)
+{
+    if (memeVideo == null)
     {
-        if ( memeVideo == null)
-        {
-            Debug.LogError("Meme data or video is missing!");
-            return;
-        }
-        ActiveDisPlayItem(0);
-
-        
-        // Gán clip video
-        videoPlayer.clip = memeVideo;
-        videoPlayer.renderMode = VideoRenderMode.RenderTexture;
-        videoPlayer.isLooping = false;
-        // // Phát video
-        videoPlayer.Play();
-        StartCoroutine(CloseAllItems());
+        return;
     }
 
-   private void ShowMemeImage(Sprite memeImg)                                                                                                                                                                
+    ActiveDisPlayItem(0);
+
+    // Gán clip video
+    videoPlayer.clip = memeVideo;
+    videoPlayer.renderMode = VideoRenderMode.RenderTexture;
+    videoPlayer.isLooping = false;
+
+    // Phát video
+    videoPlayer.Play();
+
+    // Lấy thời gian của video và bắt đầu coroutine với thời gian chờ
+    StartCoroutine(CloseAllItems(memeVideo.length));
+}
+
+private IEnumerator CloseAllItems(double delay)
+{
+    // Chờ thời gian tương ứng với độ dài video
+    yield return new WaitForSeconds((float)delay);
+
+    // Thực hiện hành động đóng các item
+    // Đặt logic của bạn ở đây
+    Debug.Log("Đã đóng tất cả các items sau thời gian video chạy.");
+}
+
+   private void ShowMemeImage(Sprite memeImg ,AudioClip ImgSound)                                                                                                                                                                
     {
 
         if (ImgDisPlay != null)
         {
             ActiveDisPlayItem(1);
             ImgDisPlay.sprite = memeImg;
+
+        }
+        if(ImgSound != null )
+        {
+            SoundManager.Instance.PlayVFXSound(ImgSound);
         }
         StartCoroutine(CloseAllItems());
     }
@@ -110,8 +120,8 @@ public class ProcessSystem : MonoBehaviour, IObserver
     }
     IEnumerator  CloseAllItems()
     {
-        yield return new WaitForSeconds(5);
-        CloseAll();
+        yield return new WaitForSeconds(10);
+        //CloseAll();
     }
     public void CloseAll()
     {

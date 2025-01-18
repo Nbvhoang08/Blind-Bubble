@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,8 +11,7 @@ public class ObjectMeme : MonoBehaviour
     {
         Image,
         Video,
-        JumpScare,
-        GameEvent
+        JumpScare
     }
 
     [System.Serializable]
@@ -20,39 +20,17 @@ public class ObjectMeme : MonoBehaviour
         public MemeType type;
         public Sprite memeImage; // Ảnh meme
         public VideoClip memeVideo; // Video meme
-        public GameObject jumpScarePrefab; // Prefab jump scare
-        public GameObject gameEventObject; // Event trong game
-    }
+        public AudioClip ImgSound;
+     }
 
     public MemeData memeData;
-
-
-    // Hàm này sẽ được gọi khi click vào object
-    private void OnMouseDown()
-    {
-        Subject.NotifyObservers("BublePop",memeData);
-        
-    }
-   
-    private void TriggerJumpScare()
-    {
-        if (memeData.jumpScarePrefab != null)
+   void OnTriggerEnter(Collider other)
+   {    
+        if(other.CompareTag("Bullet"))
         {
-            Instantiate(memeData.jumpScarePrefab, transform.position, Quaternion.identity);
+            Subject.NotifyObservers("BublePop",memeData);
         }
-    }
+   }    
+    
 
-    private void ActivateGameEvent()
-    {
-        if (memeData.gameEventObject != null)
-        {
-            memeData.gameEventObject.SetActive(true);
-        }
-    }
-
-    // private IEnumerator ResetMeme()
-    // {
-    //     yield return new WaitForSeconds(5f);
-    //     isMemeActive = false;
-    // }
 }

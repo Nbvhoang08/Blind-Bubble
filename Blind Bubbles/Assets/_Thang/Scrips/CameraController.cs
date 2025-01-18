@@ -29,7 +29,7 @@ public class CameraController : MonoBehaviour
     // Hàm xử lý khi bullet va chạm
     private void OnBulletHitHandler(Vector3 hitPoint)
     {
-        Debug.Log("Bullet hit at: " + hitPoint);
+       
         isFollowingBullet = false;
         // Remove the following line to stop the camera from returning to the original position
         // StartCoroutine(ReturnToOriginalPosition());

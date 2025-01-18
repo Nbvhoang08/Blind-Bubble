@@ -10,7 +10,7 @@ public class Player : MonoBehaviour
     public float arcHeight = 5f;
     [SerializeField] private bool isWind = false; // Thêm biến kiểm tra có gió hay không
     [SerializeField] private Vector3 windDirection = Vector3.right; // Hướng gió (mặc định là sang phải)
-    [SerializeField] private float windStrength = 5f; // Độ mạnh của gió
+    //[SerializeField] private float windStrength = 5f; // Độ mạnh của gió
 
     private Vector3 targetPosition;
     private bool hasTarget = false;
@@ -44,7 +44,6 @@ public class Player : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             isWind = !isWind;
-            Debug.Log("Wind is " + (isWind ? "enabled" : "disabled"));
         }
     }
 
@@ -56,7 +55,6 @@ public class Player : MonoBehaviour
 
     public void CompleteThrow()
     {
-        Debug.Log("completeThrow");
         isThrowing = false;
         isTurning = true;
         StartCoroutine(RotateOverTime(180));
@@ -83,7 +81,6 @@ public class Player : MonoBehaviour
 
         float elapsedTime = 0f;
         float duration = Mathf.Abs(angle / turnSpeed);
-        Debug.Log(startRotation + " " + targetRotation);
         while (elapsedTime < duration)
         {
             transform.rotation = Quaternion.Lerp(startRotation, targetRotation, elapsedTime / duration);
@@ -102,28 +99,19 @@ public class Player : MonoBehaviour
     if (!isThrowing || !hasTarget) return;
 
     GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
-    Debug.Log("Bullet spawned at: " + bullet.transform.position);
     
     Rigidbody rb = bullet.GetComponent<Rigidbody>();
     
-    // Thêm HomingBullet component
-    bullet.AddComponent<HomingBullet>();
 
     Vector3 throwVelocity = CalculateThrowVelocity(firePoint.position, targetPosition, arcHeight, throwForce);
     rb.velocity = throwVelocity;
 
     if (cameraController != null)
     {
-        Debug.Log("Starting camera follow");
         cameraController.StartFollowingBullet(bullet);
     }
-    else
-    {
-        Debug.LogError("Camera Controller is not assigned!");
+        Destroy(bullet, 3f);
     }
-
-    Destroy(bullet, 3f);
-}
 
     private Vector3 CalculateThrowVelocity(Vector3 start, Vector3 target, float height, float speed)
     {
