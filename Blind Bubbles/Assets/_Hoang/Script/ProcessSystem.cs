@@ -71,7 +71,9 @@ private IEnumerator CloseAllItems(double delay)
 
     // Thực hiện hành động đóng các item
     // Đặt logic của bạn ở đây
-    Debug.Log("Đã đóng tất cả các items sau thời gian video chạy.");
+
+    
+    // Thuc hien logic chuyen scene
 }
 
    private void ShowMemeImage(Sprite memeImg ,AudioClip ImgSound)                                                                                                                                                                
@@ -120,8 +122,8 @@ private IEnumerator CloseAllItems(double delay)
     }
     IEnumerator  CloseAllItems()
     {
-        yield return new WaitForSeconds(10);
-        //CloseAll();
+        yield return new WaitForSeconds(3);
+        //CloseAll(); /// Chuyen scence
     }
     public void CloseAll()
     {

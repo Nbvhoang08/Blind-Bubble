@@ -1,3 +1,4 @@
+using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -8,7 +9,6 @@ public class Player : MonoBehaviour
     public Transform firePoint;
     public float throwForce = 20f;
     public float arcHeight = 5f;
-    [SerializeField] private bool isWind = false; // Thêm biến kiểm tra có gió hay không
     [SerializeField] private Vector3 windDirection = Vector3.right; // Hướng gió (mặc định là sang phải)
     //[SerializeField] private float windStrength = 5f; // Độ mạnh của gió
 
@@ -16,19 +16,26 @@ public class Player : MonoBehaviour
     private bool hasTarget = false;
     [SerializeField] private bool isThrowing = false;
     [SerializeField] private bool isTurning = false;
+    private bool CanClick;
 
     void Start()
     {
         ani = GetComponent<Animator>();
         isThrowing = false;
         isTurning = false;
+        CanClick = false;
     }
-
-    void Update()
+    IEnumerator WaitToClick()
     {
+        yield return  new WaitForSeconds(2);
+        CanClick = true;
+    }
+    void Update()
+    {   
+        
         ani.SetBool("throw", isThrowing);
         ani.SetBool("turn", isTurning);
-
+        if (!CanClick) return;
         // Nhấn chuột trái để bắt đầu
         if (Input.GetMouseButtonDown(0) && !isThrowing && !isTurning)
         {
@@ -40,11 +47,6 @@ public class Player : MonoBehaviour
             }
         }
 
-        // Toggle wind với phím Space (để test)
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            isWind = !isWind;
-        }
     }
 
     public void SetTarget(Vector3 position)

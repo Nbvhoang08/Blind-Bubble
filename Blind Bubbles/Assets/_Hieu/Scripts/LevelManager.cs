@@ -120,7 +120,7 @@ public class LevelManager : MonoBehaviour
         yield return new WaitForSeconds(.75f);
         if (levelIndex < levelUnlocked.Count && levelUnlocked[levelIndex])
         {
-            SceneManager.LoadScene("Lv" + levelIndex);
+            SceneManager.LoadScene("Lv" + (levelIndex +1).ToString());
         }
         else
         {
