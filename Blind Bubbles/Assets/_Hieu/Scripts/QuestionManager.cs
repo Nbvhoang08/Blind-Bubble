@@ -1,43 +1,27 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class QuestionManager : Singleton<QuestionManager>
+public class QuestionManager : MonoBehaviour
 {
     [SerializeField] private string[] questions;
     [SerializeField] private TextMeshProUGUI txtQuestion;
     [SerializeField] private float showSpeed;
     private Coroutine currentCoroutine;
-    private bool isTyping = false;
-    private int click = 0;
-
-    protected override void Awake()
+    public static QuestionManager Instance;
+    private void Awake()
     {
-        base.Awake();
+        Instance = this;
     }
 
-    void Update()
+    private void Start()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            if (isTyping)
-            {
-                StopCoroutine(currentCoroutine);
-                txtQuestion.text = questions[click];
-                isTyping = false;
-            }
-            else
-            {
-                click++;
-                if (click < questions.Length)
-                {
-                    ShowQuestion(click);
-                }
-            }
-        }
+        txtQuestion.text = "";
+        
     }
-
     public void HideQuestion()
     {
         txtQuestion.gameObject.SetActive(false);
@@ -52,18 +36,16 @@ public class QuestionManager : Singleton<QuestionManager>
             StopCoroutine(currentCoroutine);
         }
 
-        txtQuestion.text = "";
         currentCoroutine = StartCoroutine(ShowQuestionCroutine(questions[index]));
     }
 
     IEnumerator ShowQuestionCroutine(string question)
     {
-        isTyping = true;
+        yield return new WaitForSeconds(1f);
         foreach (char letter in question)
         {
             txtQuestion.text += letter;
             yield return new WaitForSeconds(showSpeed);
         }
-        isTyping = false;
     }
 }

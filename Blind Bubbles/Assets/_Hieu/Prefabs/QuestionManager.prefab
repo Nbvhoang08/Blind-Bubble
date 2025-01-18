@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6912834467216464736
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3290874695877989845}
+  - component: {fileID: 394555632516361493}
+  m_Layer: 0
+  m_Name: QuestionManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3290874695877989845
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6912834467216464736}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 610.8073, y: 356.9884, z: -9.008577}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &394555632516361493
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6912834467216464736}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aff7bf9b25d78744f820858f06af810d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  questions:
+  - "anh h\u1EB9n em ..."
+  - Chill with music
+  - "Ch\u1ECDc ai ch\u1EE9 \u0111\u1EEBng ch\u1ECDc ..."
+  - "\u0110\u01B0\u1EDDng t\xECnh em thua \u0111\u01B0\u1EDDng \u0111ua em ..."
+  - "Th\u1EA5t b\u1EA1i l\xE0 ..."
+  - "Cu\u1ED9c \u0111\u1EDDi n\xE0y c\xF3 3 th\u1EE9 quan tr\u1ECDng nh\u1EA5t ...
+    \u0102n, ng\u1EE7 v\xE0 ..."
+  - "L\u1EEBa ..."
+  - "Cu\u1ED9c s\u1ED1ng n\xE0y th\u1EADt stress"
+  - "Nh\u01B0 th\u1EBF n\xE0o l\xE0 gi\u1EA5c ng\u1EE7 s\xE2u nh\u1EA5t ?"
+  - "M\u1EABu ng\u01B0\u1EDDi y\xEAu c\u1EE7a b\u1EA1n c\xF3 ph\u1EA3i l\xE0 ..."
+  txtQuestion: {fileID: 0}
+  showSpeed: 0.05

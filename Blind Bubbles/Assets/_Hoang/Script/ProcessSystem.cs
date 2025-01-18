@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.Video;
 
@@ -44,36 +45,38 @@ public class ProcessSystem : MonoBehaviour, IObserver
     }
 
     private void PlayMemeVideo(VideoClip memeVideo)
-{
-    if (memeVideo == null)
     {
-        return;
+        if (memeVideo == null)
+        {
+            return;
+        }
+
+        ActiveDisPlayItem(0);
+
+        // Gán clip video
+        videoPlayer.clip = memeVideo;
+        videoPlayer.renderMode = VideoRenderMode.RenderTexture;
+        videoPlayer.isLooping = false;
+
+        // Phát video
+        videoPlayer.Play();
+
+        // Lấy thời gian của video và bắt đầu coroutine với thời gian chờ
+        StartCoroutine(CloseAllItems(memeVideo.length));
     }
-
-    ActiveDisPlayItem(0);
-
-    // Gán clip video
-    videoPlayer.clip = memeVideo;
-    videoPlayer.renderMode = VideoRenderMode.RenderTexture;
-    videoPlayer.isLooping = false;
-
-    // Phát video
-    videoPlayer.Play();
-
-    // Lấy thời gian của video và bắt đầu coroutine với thời gian chờ
-    StartCoroutine(CloseAllItems(memeVideo.length));
-}
 
 private IEnumerator CloseAllItems(double delay)
 {
     // Chờ thời gian tương ứng với độ dài video
     yield return new WaitForSeconds((float)delay);
 
-    // Thực hiện hành động đóng các item
-    // Đặt logic của bạn ở đây
+        // Thực hiện hành động đóng các item
+        // Đặt logic của bạn ở đây
 
-    
-    // Thuc hien logic chuyen scene
+
+        // Thuc hien logic chuyen scene
+    int nextLevel = SceneManager.GetActiveScene().buildIndex - 1;
+    LevelManager.Instance.PlayLevel(nextLevel);
 }
 
    private void ShowMemeImage(Sprite memeImg ,AudioClip ImgSound)                                                                                                                                                                
@@ -124,6 +127,8 @@ private IEnumerator CloseAllItems(double delay)
     {
         yield return new WaitForSeconds(3);
         //CloseAll(); /// Chuyen scence
+        int nextLevel = SceneManager.GetActiveScene().buildIndex - 1;
+        LevelManager.Instance.PlayLevel(nextLevel);
     }
     public void CloseAll()
     {

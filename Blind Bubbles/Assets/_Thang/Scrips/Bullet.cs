@@ -14,6 +14,7 @@ public class Bullet : MonoBehaviour
             {
                 OnBulletHit.Invoke(transform.position);
             }
+            LevelManager.Instance.UnlockNextLevel();
             Destroy(gameObject);
             Destroy(collision.gameObject);
         }

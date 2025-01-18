@@ -358,76 +358,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!1 &660291947
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 660291949}
-  - component: {fileID: 660291948}
-  m_Layer: 0
-  m_Name: QuestionManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &660291948
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 660291947}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aff7bf9b25d78744f820858f06af810d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  questions:
-  - "anh h\u1EB9n em ..."
-  - "Ch\u1ECDc ai th\xEC ch\u1ECDc ch\u1EE9 \u0111\u1EEBng ch\u1ECDc ..."
-  - "\u0110\u01B0\u1EDDng t\xECnh em thua \u0111\u01B0\u1EDDng \u0111ua em ..."
-  - "T\u1EBFt n\xE0y v\u1EABn gi\u1ED1ng T\u1EBFt x\u01B0a V\u1EABn \u0111i xe m\xE1y
-    V\u1EABn ..."
-  - "Th\u1EA5t b\u1EA1i l\xE0 ..."
-  - "G\u1EA7n m\u1EF1c th\xEC \u0111en m\xE0 g\u1EA7n \u0111\xE8n th\xEC ..."
-  - "Nh\xECn l\u1EA1i 2024 b\u1EA1n th\u1EA5y g\xEC ? ..."
-  - "Cu\u1ED9c \u0111\u1EDDi n\xE0y c\xF3 3 th\u1EE9 quan tr\u1ECDng nh\u1EA5t ...
-    \u0102n, ng\u1EE7 v\xE0 ..."
-  - "B\u1EA1n mu\u1ED1n x\u1EA3 x\xEC ch\xE9t kh\xF4ng =]]?"
-  - " H\xE3y lu\xF4n m\u1EDF \u0111\u1EA7u ng\xE0y m\u1EDBi b\u1EB1ng\u2026?"
-  - "Cu\u1ED9c s\u1ED1ng n\xE0y lu\xF4n \u0111\u1EA7y nh\u1EEFng c\xFA l\u1EEBa:(...
-    \u0111i\u1EC1u b\u1EA1n ph\u1EA3i l\xE0m l\xE0 kh\xF4ng cay c\xFA"
-  - "C\xE1ch l\xE0m t\u1ED1t nh\u1EA5t khi b\u1ECB \u0111\u1ED5 oan :) ?"
-  - Try not to laugh :>>
-  - "B\u1EA1n c\xF3 bi\u1EBFt c\xE1ch t\u1ED1t nh\u1EA5t khi cu\u1ED1i th\xE1ng h\u1EBFt
-    ti\u1EC1n l\xE0 g\xEC kh\xF4ng?"
-  - "Nhi\u1EC7t t\xECnh + ngu d\u1ED1t = ?"
-  - "\u0110\u1EEBng tin v\xE0o nh\u1EEFng g\xEC b\u1EA1n th\u1EA5y\u2026"
-  - "Nh\u01B0 n\xE0o l\xE0 b\u1EA1n th\xE2n =]]?"
-  - "All you gotta do is just meet me at the\u2026"
-  - "\u0110\u1EDDi c\xF2n d\xE0i c\u1EE9 ch\u01A1i \u0111i c\xE1c b\xE1c=]]"
-  txtQuestion: {fileID: 443743846}
-  showSpeed: 0.05
---- !u!4 &660291949
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 660291947}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 610.8073, y: 356.9884, z: -9.008577}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1326335885
 GameObject:
   m_ObjectHideFlags: 0
@@ -682,6 +612,67 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &9040168282835953383
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 394555632516361493, guid: 638b41a152edfa344a751351e919dbf7, type: 3}
+      propertyPath: txtQuestion
+      value: 
+      objectReference: {fileID: 443743846}
+    - target: {fileID: 3290874695877989845, guid: 638b41a152edfa344a751351e919dbf7, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 610.8073
+      objectReference: {fileID: 0}
+    - target: {fileID: 3290874695877989845, guid: 638b41a152edfa344a751351e919dbf7, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 356.9884
+      objectReference: {fileID: 0}
+    - target: {fileID: 3290874695877989845, guid: 638b41a152edfa344a751351e919dbf7, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -9.008577
+      objectReference: {fileID: 0}
+    - target: {fileID: 3290874695877989845, guid: 638b41a152edfa344a751351e919dbf7, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3290874695877989845, guid: 638b41a152edfa344a751351e919dbf7, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3290874695877989845, guid: 638b41a152edfa344a751351e919dbf7, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3290874695877989845, guid: 638b41a152edfa344a751351e919dbf7, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3290874695877989845, guid: 638b41a152edfa344a751351e919dbf7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3290874695877989845, guid: 638b41a152edfa344a751351e919dbf7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3290874695877989845, guid: 638b41a152edfa344a751351e919dbf7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6912834467216464736, guid: 638b41a152edfa344a751351e919dbf7, type: 3}
+      propertyPath: m_Name
+      value: QuestionManager
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 638b41a152edfa344a751351e919dbf7, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -690,4 +681,4 @@ SceneRoots:
   - {fileID: 1644451778}
   - {fileID: 581004072}
   - {fileID: 1326335888}
-  - {fileID: 660291949}
+  - {fileID: 9040168282835953383}

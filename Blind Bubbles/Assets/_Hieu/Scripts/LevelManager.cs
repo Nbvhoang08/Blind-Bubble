@@ -14,14 +14,13 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private Transform circle;
     private List<bool> levelUnlocked = new List<bool>(); 
     public static LevelManager Instance;
-    private const int TotalLevels = 20; 
+    private const int TotalLevels = 10; 
     private void Awake() {
         Instance = this;
     }
     void Start()
     {
-        if(title != null)
-            StartAnim();
+        StartAnim();
         InitializeLevels();
         if (levelBtn != null && levelBtn.Count > 0)
         {
@@ -42,7 +41,7 @@ public class LevelManager : MonoBehaviour
     {
         if (levelBtn == null || levelBtn.Count == 0) return; 
 
-        for (int i = 0; i < levelBtn.Count; i++)
+        for (int i = 0; i < TotalLevels; i++)
         {
             levelBtn[i].image.sprite = levelUnlocked[i] ? unlockedSprite : lockedSprite;
             int levelIndex = i; 
@@ -53,7 +52,7 @@ public class LevelManager : MonoBehaviour
 
     public void UnlockNextLevel()
     {
-        int currentLevel = SceneManager.GetActiveScene().buildIndex; 
+        int currentLevel = SceneManager.GetActiveScene().buildIndex - 1; 
         Debug.Log(currentLevel);
         int nextLevel = currentLevel + 1;
 
@@ -106,25 +105,46 @@ public class LevelManager : MonoBehaviour
         foreach (var button in levelBtn) button.transform.localScale = Vector3.zero;
         StartCoroutine(StartSceneEff());
     }
+    public void BackToStartScene()
+    {
+        StartCoroutine(HomeCroutine());
+    }
+    IEnumerator HomeCroutine()
+    {
+        circle.DOScale(30, 1f).SetEase(Ease.InOutQuad);
+        yield return new WaitForSeconds(1f);
+        SceneManager.LoadScene("StartScene");
+
+    }
     IEnumerator StartSceneEff()
     {
         circle.localScale = Vector3.one * 30;
         circle.DOScale(0, 1f).SetEase(Ease.InOutQuad);
-        yield return new WaitForSeconds(.5f);
-        StartCoroutine(TitleAnim());
-        StartCoroutine(LoadBtnCroutine());
+        if(QuestionManager.Instance != null)
+        {
+            int index = SceneManager.GetActiveScene().buildIndex - 2;
+            QuestionManager.Instance.ShowQuestion(index);
+        }
+        if (title != null)
+        {
+            yield return new WaitForSeconds(.5f);
+            StartCoroutine(TitleAnim());
+            StartCoroutine(LoadBtnCroutine());
+        }
     }
     IEnumerator ChangeSceneEff(int levelIndex)
     {
-        circle.DOScale(30, .75f).SetEase(Ease.InOutQuad);
-        yield return new WaitForSeconds(.75f);
         if (levelIndex < levelUnlocked.Count && levelUnlocked[levelIndex])
         {
+            circle.DOScale(30, .75f).SetEase(Ease.InOutQuad);
+            yield return new WaitForSeconds(.75f);
             SceneManager.LoadScene("Lv" + (levelIndex +1).ToString());
         }
         else
         {
-            Debug.Log("Level " + levelIndex + " is locked!");
+            circle.DOScale(30, .75f).SetEase(Ease.InOutQuad);
+            yield return new WaitForSeconds(.75f);
+            SceneManager.LoadScene("LevelMenu");
         }
     }
     IEnumerator LoadBtnCroutine()

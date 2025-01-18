@@ -9,14 +9,19 @@ public class Player : MonoBehaviour
     public Transform firePoint;
     public float throwForce = 20f;
     public float arcHeight = 5f;
-    [SerializeField] private Vector3 windDirection = Vector3.right; // Hướng gió (mặc định là sang phải)
-    //[SerializeField] private float windStrength = 5f; // Độ mạnh của gió
-
+    //[SerializeField] private Vector3 windDirection = Vector3.right; 
     private Vector3 targetPosition;
     private bool hasTarget = false;
     [SerializeField] private bool isThrowing = false;
     [SerializeField] private bool isTurning = false;
-    private bool CanClick;
+    public bool CanClick { get; private set; }
+    public static Player Instance;
+
+    private void Awake()
+    {
+        Instance = this; 
+    }
+
 
     void Start()
     {
@@ -25,10 +30,9 @@ public class Player : MonoBehaviour
         isTurning = false;
         CanClick = false;
     }
-    IEnumerator WaitToClick()
+    public void ChangeStateClick(bool state)
     {
-        yield return  new WaitForSeconds(2);
-        CanClick = true;
+        CanClick = state;
     }
     void Update()
     {   

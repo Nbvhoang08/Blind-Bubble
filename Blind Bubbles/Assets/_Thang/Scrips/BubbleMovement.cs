@@ -13,7 +13,7 @@ public class BubbleMovement : MonoBehaviour
     private bool reachedTargetHeight = false;
 
     // Danh sách các Material đã được sử dụng
-    private static List<Material> usedMaterials = new List<Material>();
+    private  List<Material> usedMaterials = new List<Material>();
 
     void Start()
     {
@@ -31,7 +31,8 @@ public class BubbleMovement : MonoBehaviour
             if (transform.position.y >= startPos.y + targetHeight)
             {
                 reachedTargetHeight = true;
-                startPos = transform.position; // Thiết lập lại vị trí bắt đầu cho hiệu ứng dao động
+                startPos = transform.position;
+                Player.Instance.ChangeStateClick(true);// Thiết lập lại vị trí bắt đầu cho hiệu ứng dao động
             }
         }
         else
